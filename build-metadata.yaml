@@ -1,0 +1,214 @@
+description: This is the metadata of the build process of the Euro-Calliope model
+  in the same directory.
+euro-calliope-version: 1.1.0.dev
+euro-calliope-lib-version: 1.1.0.dev
+generated-utc: 2021-10-21 12:41:52.402622
+config:
+  scope: !!python/object/apply:collections.OrderedDict
+  - - - spatial
+      - !!python/object/apply:collections.OrderedDict
+        - - - countries
+            - - Germany
+              - Italy
+              - Switzerland
+          - - bounds
+            - x_min: -15.8
+              x_max: 37
+              y_min: 30
+              y_max: 75
+    - - temporal
+      - !!python/object/apply:collections.OrderedDict
+        - - - first-year
+            - 2014
+          - - final-year
+            - 2016
+  sea-connections: !!python/object/apply:collections.OrderedDict
+  - - - continental
+      - []
+    - - national
+      - []
+    - - regional
+      - - - ITA.14_1
+          - ITA.8_1
+        - - ITA.4_1
+          - ITA.15_1
+  data-sources:
+    biofuel-potentials: data/euro-calliope-datasets/biofuels/potentials/{feedstock}.csv
+    biofuel-costs: data/euro-calliope-datasets/biofuels/costs/{feedstock}.csv
+    eez: https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=1.0.0&request=GetFeature&typeNames=MarineRegions:eez&outputFormat=SHAPE-ZIP
+    irena-generation: data/euro-calliope-datasets/irena/hydro-generation-europe.csv
+    national-phs-storage-capacities: data/euro-calliope-datasets/pumped-hydro/storage-capacities-gwh.csv
+    capacity-factors: https://zenodo.org/record/3899687/files/{filename}?download=1
+    gadm: https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_{country_code}_gpkg.zip
+    hydro-basins: https://www.dropbox.com/sh/hmpwobbz9qixxpe/AADeU9iCgMd3ZO1KgrFmfWu6a/HydroBASINS/standard/eu/hybas_eu_lev07_v1c.zip?dl=1
+    hydro-stations: https://zenodo.org/record/5119541/files/energy-modelling-toolkit/hydro-power-database-v09.zip?download=1
+    load: https://data.open-power-system-data.org/time_series/2019-06-05/time_series_60min_stacked.csv
+    nuts: https://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2013_01M_SH.zip
+    potentials: https://zenodo.org/record/5112963/files/possibility-for-electricity-autarky.zip
+    data-repository: https://raw.githubusercontent.com/calliope-project/euro-calliope-datasets/develop/{dataset}
+    entsoe-tyndp: https://2020.entsos-tyndp-scenarios.eu/wp-content/uploads/2020/06/TYNDP-2020-Scenario-Datafile.xlsx.zip
+  root-directory: .
+  cluster-sync:
+    url: euler.ethz.ch
+    send-ignore: .syncignore-send
+    receive-ignore: .syncignore-receive
+    cluster-base-dir: ~/Develop/euro-calliope/
+    local-results-dir: build/cluster
+  scaling-factors:
+    power: 1.0e-05
+    area: 0.0001
+    monetary: 1.0e-09
+  capacity-factors:
+    min: 0.001
+    max: 10
+    average:
+      pv: 0.139
+      onshore: 0.3021
+      offshore: 0.4223
+      ror: 0.536781
+    trim-ninja-timeseries: true
+  crs: EPSG:4326
+  parameters:
+    maximum-installable-power-density:
+      pv-on-tilted-roofs: 160
+      pv-on-flat-areas: 80
+      onshore-wind: 8
+      offshore-wind: 15
+    roof-share:
+      E: 0.166
+      N: 0.1817
+      S: 0.1821
+      W: 0.1681
+      flat: 0.302
+    jrc-biofuel:
+      scenario: medium
+      potential-year: '2020'
+      cost-year: '2030'
+    biofuel-efficiency: 0.45
+    wind-and-solar-potential-scenario: technical-potential
+    entsoe-tyndp:
+      scenario: National Trends
+      grid: Reference
+      projection-year: 2040
+      ntc_limit: max
+      energy_cap_limit: equals
+  quality-control:
+    load:
+      outlier-data-thresholds:
+        relative-to-mean-min: 0.25
+        relative-to-mean-max: 2
+      max-interpolate-timesteps: 3
+      acceptable-year-diff-for-gap-filling: 5
+      fill-29th-feb-from-28th: true
+      data-source-priority-order:
+      - actual_entsoe_transparency
+      - actual_entsoe_power_statistics
+    hydro:
+      scale-phs-according-to-geth-et-al: false
+      station-nearest-basin-max-km: 1
+  shapes:
+    continental:
+      Austria: nuts0
+      Belgium: nuts0
+      Bulgaria: nuts0
+      Croatia: nuts0
+      Cyprus: nuts0
+      Czech Republic: nuts0
+      Denmark: nuts0
+      Estonia: nuts0
+      Finland: nuts0
+      France: nuts0
+      Germany: nuts0
+      Greece: nuts0
+      Hungary: nuts0
+      Ireland: nuts0
+      Italy: nuts0
+      Latvia: nuts0
+      Lithuania: nuts0
+      Luxembourg: nuts0
+      Netherlands: nuts0
+      Poland: nuts0
+      Portugal: nuts0
+      Romania: nuts0
+      Slovakia: nuts0
+      Slovenia: nuts0
+      Spain: nuts0
+      Sweden: nuts0
+      United Kingdom: nuts0
+      Albania: gadm0
+      Bosnia and Herzegovina: gadm0
+      Macedonia, Republic of: gadm0
+      Montenegro: gadm0
+      Norway: nuts0
+      Serbia: gadm0
+      Switzerland: nuts0
+    national:
+      Austria: nuts0
+      Belgium: nuts0
+      Bulgaria: nuts0
+      Croatia: nuts0
+      Cyprus: nuts0
+      Czech Republic: nuts0
+      Denmark: nuts0
+      Estonia: nuts0
+      Finland: nuts0
+      France: nuts0
+      Germany: nuts0
+      Greece: nuts0
+      Hungary: nuts0
+      Ireland: nuts0
+      Italy: nuts0
+      Latvia: nuts0
+      Lithuania: nuts0
+      Luxembourg: nuts0
+      Netherlands: nuts0
+      Poland: nuts0
+      Portugal: nuts0
+      Romania: nuts0
+      Slovakia: nuts0
+      Slovenia: nuts0
+      Spain: nuts0
+      Sweden: nuts0
+      United Kingdom: nuts0
+      Albania: gadm0
+      Bosnia and Herzegovina: gadm0
+      Macedonia, Republic of: gadm0
+      Montenegro: gadm0
+      Norway: nuts0
+      Serbia: gadm0
+      Switzerland: nuts0
+    regional:
+      Austria: gadm1
+      Belgium: gadm1
+      Bulgaria: gadm1
+      Croatia: gadm1
+      Cyprus: gadm1
+      Czech Republic: gadm1
+      Denmark: gadm1
+      Estonia: gadm1
+      Finland: gadm1
+      France: gadm1
+      Germany: gadm1
+      Greece: gadm1
+      Hungary: gadm1
+      Ireland: gadm1
+      Italy: gadm1
+      Latvia: gadm1
+      Lithuania: gadm1
+      Luxembourg: gadm2
+      Netherlands: gadm1
+      Poland: gadm1
+      Portugal: gadm1
+      Romania: gadm1
+      Slovakia: gadm1
+      Slovenia: gadm1
+      Spain: gadm1
+      Sweden: gadm1
+      United Kingdom: gadm1
+      Albania: gadm1
+      Bosnia and Herzegovina: gadm1
+      Macedonia, Republic of: nuts3
+      Montenegro: gadm1
+      Norway: gadm1
+      Serbia: gadm1
+      Switzerland: gadm1

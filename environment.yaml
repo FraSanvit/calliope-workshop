@@ -1,0 +1,9 @@
+name: euro-calliope-at-emp-e
+channels:
+    - conda-forge
+    - gurobi
+dependencies:
+    - python=3.7
+    - calliope=0.6.7
+    - gurobi=9.1
+    - jupyter
