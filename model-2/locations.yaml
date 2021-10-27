@@ -1,0 +1,84 @@
+locations:
+    DEU: # Germany
+        coordinates: {lat: 51.0542, lon: 10.3703}
+        techs:
+            demand_elec:
+            wind_onshore:
+                constraints:
+                    resource_area_max: 9627 # (km2)
+            roof_mounted_pv:
+                constraints:
+                    energy_cap_max: 746 # (GW)
+            wind_offshore:
+                constraints:
+                    energy_cap_max: 45 # (GW)
+            hydro_run_of_river:
+                constraints:
+                    energy_cap_equals: 3.2 # (GW)
+            hydro_reservoir:
+                constraints:
+                    energy_cap_equals: 0.2 # (GW)
+                    storage_cap_equals: 172 # (GWh)
+            pumped_hydro:
+                constraints:
+                    energy_cap_equals: 6.6 # (GW)
+                    storage_cap_equals: 40 # (GWh)
+            biofuel:
+                constraints:
+                    resource: 1.7 # (GW)
+                    storage_cap_equals: 7600 # (GWh) (0.5x annual yield)
+
+    ITA: # Italy
+        coordinates: {lat: 42.7146, lon: 12.2057}
+        techs:
+            demand_elec:
+            wind_onshore:
+                constraints:
+                    resource_area_max: 9100 # (km2)
+            roof_mounted_pv:
+                constraints:
+                    energy_cap_max: 410 # (GW)
+            wind_offshore:
+                constraints:
+                    energy_cap_max: 46 # (GW)
+            hydro_run_of_river:
+                constraints:
+                    energy_cap_equals: 5.9 # (GW)
+            hydro_reservoir:
+                constraints:
+                    energy_cap_equals: 5.52 # (GW)
+                    storage_cap_equals: 4980 # (GWh)
+            pumped_hydro:
+                constraints:
+                    energy_cap_equals: 8 # (GW)
+                    storage_cap_equals: 414 # (GWh)
+            biofuel:
+                constraints:
+                    resource: 0.67 # (GW)
+                    storage_cap_equals: 2940 # (GWh) (0.5x annual yield)
+                    
+    CHE: # Switzerland
+        coordinates: {lat: 46.8016, lon: 8.2271}
+        techs:
+            demand_elec:
+            wind_onshore:
+                constraints:
+                    resource_area_max: 557 # (km2)
+            roof_mounted_pv:
+                constraints:
+                    energy_cap_max: 59.7 # (GW)
+            hydro_run_of_river:
+                constraints:
+                    energy_cap_equals: 4 # (GW)
+            hydro_reservoir:
+                constraints:
+                    energy_cap_equals: 9.1 # (GW)
+                    storage_cap_equals: 2280 # (GWh)
+            pumped_hydro:
+                constraints:
+                    energy_cap_equals: 4 # (GW)
+                    storage_cap_equals: 290 # (GWh)
+            biofuel:
+                constraints:
+                    resource: 0.2 # (GW)
+                    storage_cap_equals: 900 # (GWh) (0.5x annual yield)

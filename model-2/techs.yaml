@@ -1,0 +1,166 @@
+techs:
+    # Variable renewables
+    ## PV
+    roof_mounted_pv:
+        essentials:
+            name: Roof mounted PV
+            carrier: electricity
+            parent: supply
+            color: "#f9d834"
+        constraints:
+            resource: file=capacityfactors-rooftop-pv.csv
+            resource_unit: energy_per_cap
+            resource_area_per_energy_cap: 6.25  # (km^2/GW) from [@Gagnon:2016, @Klauser:2016]
+            lifetime: 25
+        costs:
+            monetary:  # from [@JRC:2014] Table 9
+                energy_cap: 880 # (MEUR2013/GW)
+                om_annual: 16.4 # (MEUR2013/GW/year) 2% of CAPEX
+    ## Wind
+    wind_onshore:
+        essentials:
+            name: Onshore wind
+            carrier: electricity
+            parent: supply
+            color: "#b734f9"
+        constraints:
+            resource: file=capacityfactors-wind-onshore.csv
+            resource_unit: energy_per_cap
+            resource_area_per_energy_cap: 125 # (km^2/GW) from [@EuropeanEnvironmentAgency:2009]
+            lifetime: 25
+        costs:
+            monetary:  # from [@JRC:2014] Table 4
+                energy_cap: 1100 # (MEUR2013/GW)
+                om_annual: 16 # (MEUR2013/GW/year) 1.7% of CAPEX
+    wind_offshore:
+        essentials:
+            name: Offshore wind
+            carrier: electricity
+            parent: supply
+            color: "#e3a4f1"
+        constraints:
+            resource: file=capacityfactors-wind-offshore.csv
+            resource_unit: energy_per_cap
+            resource_area_per_energy_cap: 66.7 # (km^2/GW) from [@EuropeanEnvironmentAgency:2009]
+            lifetime: 30
+        costs:
+            monetary:  # from [@JRC:2014] Table 5
+                energy_cap: 2280 # (MEUR2013/GW)
+                om_annual: 48.7 # (MEUR2013/GW/year) 2.3% of CAPEX
+    ## Hydro
+    hydro_run_of_river:
+        essentials:
+            name: Run of river hydro electricity
+            parent: supply
+            carrier: electricity
+            color: "#34b7f9"
+        constraints:
+            resource: file=capacityfactors-hydro-ror.csv
+            resource_unit: energy_per_cap
+            lifetime: 60
+        costs:
+            monetary:  # from [@JRC:2014] Table 14
+                energy_cap: 5620 # (MEUR2013/GW)
+                om_annual: 169 # (MEUR2013/GW/year) 3% of CAPEX
+                om_prod: 0.005 # (MEUR2013/GWh)
+    hydro_reservoir:
+        essentials:
+            name: Hydro electricity with a reservoir.
+            parent: supply_plus
+            carrier: electricity
+            color: "#34d5f9"
+        constraints:
+            resource: file=capacityfactors-hydro-reservoir-inflow.csv
+            resource_unit: energy_per_cap
+            lifetime: 60
+        costs:
+            monetary:  # from [@JRC:2014] Table 12
+                energy_cap: 3370 # (MEUR2013/GW)
+                om_annual: 101 # (MEUR2013/GW/year) 3% of CAPEX
+                om_prod: 0.005 #  (MEUR2013/GWh)
+    ## Firm capacity
+    biofuel:
+        essentials:
+            name: Biofuel
+            parent: supply_plus
+            carrier: electricity
+            color: "#2db978"
+        constraints:
+            lifetime: 20
+        costs:
+            monetary:  # from [@JRC:2014] Table 48 Anaerobic digestion
+                energy_cap: 2300 # (MEUR2013/GW)
+                om_annual: 94 # (MEUR2013/GW) 4.1% of CAPEX
+                om_con: 0.065 # (MEUR2013/GW)
+    ## Storage
+    pumped_hydro:  # from [@schmidt:2019] Table S4
+        essentials:
+            name: 'Pumped hydro power storage'
+            parent: storage
+            carrier: electricity
+            color: "#2d80b9"
+        constraints:
+            energy_eff: 0.8832 # 0.78 round-trip
+            lifetime: 55
+        costs:
+            monetary:
+                storage_cap: 73.6 # (MEUR2015/GWh), 80 $2015
+                energy_cap: 1040 # (MEUR2015/GW), 1129 $2015
+                om_annual: 7.4 # (MEUR2015/GW/year), 8 $2015
+    hydrogen:  # from [@schmidt:2019] Table S4
+        essentials:
+            name: Hydrogen power storage
+            parent: storage
+            carrier: electricity
+            color: "#b94d2d"
+        constraints:
+            energy_eff: 0.6325  # 0.40 round-trip
+            lifetime: 15
+        costs:
+            monetary:
+                storage_cap: 9.2  # (MEUR2015/GWh)
+                energy_cap: 1612  # (MEUR2015/GW)
+                om_annual: 13.7 # (MEUR2015/GW/year)
+    ## Transmission
+    ac_transmission:  # from [@JRC:2014], Table 39
+        essentials:
+            name: "High voltage AC transmission line"
+            parent: transmission
+            carrier: electricity
+        constraints:
+            energy_eff_per_distance: 0.99999995 # (1/m)
+            lifetime: 60
+        costs:
+            monetary:
+                energy_cap_per_distance: 9e-04 # (MEUR2013/GW/m)
+                om_annual_investment_fraction: 0.015
+    ## Demand
+    demand_elec:
+        essentials:
+            name: 'Electricity demand'
+            parent: demand
+            carrier: electricity
+        constraints:
+            resource: file=electricity-demand.csv
+
+tech_groups:
+    conversion:
+        costs:
+            monetary:
+                interest_rate: 0.073 # average wind onshore WACC OECD from [@Steffen:2019]
+    storage:
+        costs:
+            monetary:
+                interest_rate: 0.073 # average wind onshore WACC OECD from [@Steffen:2019]
+    supply:
+        costs:
+            monetary:
+                interest_rate: 0.073 # average wind onshore WACC OECD from [@Steffen:2019]
+    supply_plus:
+        costs:
+            monetary:
+                interest_rate: 0.073 # average wind onshore WACC OECD from [@Steffen:2019]
+    transmission:
+        costs:
+            monetary:
+                interest_rate: 0.073 # average wind onshore WACC OECD from [@Steffen:2019]

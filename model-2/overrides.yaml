@@ -1,0 +1,20 @@
+overrides:
+
+    add-storage:
+        locations:
+            DEU,ITA,CHE.techs.hydrogen:
+
+    add-transmission-limits:
+        # Max net transfer capacity between countries, loosely based on
+        # ENTSO-E ten-year network development plan 2020 scenario:
+        # Scenario: National Trends
+        # Case: Reference Grid
+        # Year: 2040
+        # Climate Year: 2007
+        links:
+            DEU,CHE:
+                techs.ac_transmission.constraints:
+                    energy_cap_equals: 4.6  # (GW)
+            ITA,CHE:
+                techs.ac_transmission.constraints:
+                    energy_cap_equals: 2.75  # (GW)
