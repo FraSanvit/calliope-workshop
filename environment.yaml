@@ -7,3 +7,4 @@ dependencies:
     - calliope=0.6.7
     - gurobi=9.1
     - jupyter
+    - matplotlib
