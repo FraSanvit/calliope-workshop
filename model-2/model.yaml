@@ -3,6 +3,7 @@ import:
     - 'locations.yaml'
     - 'links.yaml'
     - 'overrides.yaml'
+    - 'model-3-overrides.yaml'
 model:
     name: 'Example model'
     calliope_version: 0.6.7
