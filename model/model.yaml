@@ -3,10 +3,10 @@ import:
     - 'locations.yaml'
     - 'links.yaml'
     - 'overrides.yaml'
-    - 'model-3-overrides.yaml'
+    - 'exercise-solutions.yaml'
 model:
-    name: 'Example model'
-    calliope_version: 0.6.7
+    name: 'Simplified three-country Euro-Calliope model'
+    calliope_version: 0.6.10
     timeseries_data_path: 'timeseries_data_1d'
     subset_time: ['2016-01-01', '2016-12-31']
 run:

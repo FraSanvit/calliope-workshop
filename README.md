@@ -1,4 +1,8 @@
-# Pre-built & simplified Euro-Calliope
+# `calliope-workshop`
+
+
+
+## Simplified Euro-Calliope
 
 Ready to use models of three countries in the European electricity system, built for use in _Calliope_. The model is available on the national spatial resolution and daily temporal resolution, with a subset of technologies available compared to the base Euro-Calliope.
 
@@ -46,5 +50,3 @@ Contains modified Copernicus Atmosphere Monitoring Service information 2020. Nei
 Contains modified data from [Renewables.ninja](https://www.renewables.ninja/).
 
 Contains modified data from [Open Power System Data](https://open-power-system-data.org).
-
-
