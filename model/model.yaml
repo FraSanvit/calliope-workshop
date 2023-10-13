@@ -3,7 +3,7 @@ import:
     - 'locations.yaml'
     - 'links.yaml'
     - 'overrides.yaml'
-    - 'exercise-solutions.yaml'
+#    - 'exercise-solutions.yaml'
 model:
     name: 'Simplified three-country Euro-Calliope model'
     calliope_version: 0.6.10
